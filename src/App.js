@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import nutritionFacts from './nutritionFacts.json'
 import './App.css';
 
 function App() {
@@ -9,6 +10,13 @@ function App() {
     const [bcaaPerServingMg, setBcaaPerServingMg] = useState(0);
 
     const [ingredients, setIngredients] = useState(null);
+    const [nutritionInfo, setNutritionInfo] = useState(null);
+
+    useEffect(() => {
+        if (ingredients){
+            getNutritionFacts();
+        }
+    },[ingredients])
 
     function calculateIngredients() {
         // Define the weight ratios for each ingredient
@@ -51,6 +59,27 @@ function App() {
           bcaa: totalB
         };
       }
+
+    function getNutritionFacts() {
+        let maltodextrinPerServing = ingredients.maltodextrin / numberOfServings;
+        let fructosePerServing = ingredients.fructose / numberOfServings;
+
+        function getFact(category) {
+
+            let maltodextrinFact = maltodextrinPerServing * nutritionFacts.maltodextrin[category];
+            let fructoseFact = fructosePerServing * nutritionFacts.fructose[category];
+
+            return Math.round(maltodextrinFact + fructoseFact);
+        }
+
+        setNutritionInfo({
+            servingSize: weightPerServing,
+            calories: getFact("calories"),
+            carbohydrates: getFact("carbohydrates"),
+            sugars: getFact("sugars"),
+            sodium: sodiumPerServingMg
+        })
+    }
       
 
     return (
@@ -70,14 +99,21 @@ function App() {
                 <input type="number" onChange={(ev) => {setBcaaPerServingMg(ev.target.value)}}/>
             </form>
             <button onClick={() => {setIngredients(calculateIngredients())}}>Calculate</button>
-            {ingredients &&
+            {ingredients && nutritionInfo &&
                 <div>
                     <h1>Ingredients</h1>
-                    <p>{ingredients.maltodextrin.toFixed(2)}g of maltodextrin</p>
-                    <p>{ingredients.fructose.toFixed(2)}g of fructose</p>
-                    <p>{ingredients.water.toFixed(2)}g of water</p>
-                    <p>{ingredients.sodium.toFixed(2)}g of sodium</p>
-                    <p>{ingredients.bcaa.toFixed(2)}g of amino acids</p>
+                    <p>{+ingredients.maltodextrin.toFixed(2)}g of maltodextrin</p>
+                    <p>{+ingredients.fructose.toFixed(2)}g of fructose</p>
+                    <p>{+ingredients.water.toFixed(2)}g of water</p>
+                    <p>{+ingredients.sodium.toFixed(2)}g of sodium</p>
+                    <p>{+ingredients.bcaa.toFixed(2)}g of amino acids</p>
+
+                    <h1>Nutrition Facts</h1>
+                    <p>Serving size: 1 Gel ({nutritionInfo.servingSize}g)</p>
+                    <p>Calories: {nutritionInfo.calories}</p>
+                    <p>Carbohydrates: {nutritionInfo.carbohydrates}g</p>
+                    <p>Sugars: {nutritionInfo.sugars}g</p>
+                    <p>Sodium: {nutritionInfo.sodium}mg</p>
                 </div>
             }
         </>
