@@ -55,7 +55,7 @@ function App() {
 
     return (
         <>
-            <img src="/gel.png" alt="a blank energy gel"/>
+            <img src="https://jordan-morrison.github.io/gel-calculator/gel.png" alt="a blank energy gel"/>
             <form>
                 <label>Number of Servings:</label>
                 <input type="number" onChange={(ev) => {setNumberOfServings(ev.target.value)}}/>
