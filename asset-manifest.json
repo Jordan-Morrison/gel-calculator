@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/gel-calculator/static/css/main.f7e63acf.css",
-    "main.js": "/gel-calculator/static/js/main.d76d4a45.js",
+    "main.js": "/gel-calculator/static/js/main.f6d31f2f.js",
     "static/js/453.6ab9b22f.chunk.js": "/gel-calculator/static/js/453.6ab9b22f.chunk.js",
     "index.html": "/gel-calculator/index.html",
     "main.f7e63acf.css.map": "/gel-calculator/static/css/main.f7e63acf.css.map",
-    "main.d76d4a45.js.map": "/gel-calculator/static/js/main.d76d4a45.js.map",
+    "main.f6d31f2f.js.map": "/gel-calculator/static/js/main.f6d31f2f.js.map",
     "453.6ab9b22f.chunk.js.map": "/gel-calculator/static/js/453.6ab9b22f.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.f7e63acf.css",
-    "static/js/main.d76d4a45.js"
+    "static/js/main.f6d31f2f.js"
   ]
 }
