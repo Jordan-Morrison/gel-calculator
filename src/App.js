@@ -48,7 +48,8 @@ function App() {
         const totalW = wPerServing * numberOfServings;
       
         // Calculate total weights for s and b
-        const totalS = sPerServingG * numberOfServings;
+        // Sea salt is roughly 40% sodium, so multiplying by 2.5 for proper amount
+        const totalS = (sPerServingG * numberOfServings) * 2.54;
         const totalB = bPerServingG * numberOfServings;
       
         return {
@@ -105,7 +106,7 @@ function App() {
                     <p>{+ingredients.maltodextrin.toFixed(2)}g of maltodextrin</p>
                     <p>{+ingredients.fructose.toFixed(2)}g of fructose</p>
                     <p>{+ingredients.water.toFixed(2)}g of water</p>
-                    <p>{+ingredients.sodium.toFixed(2)}g of sodium</p>
+                    <p>{+ingredients.sodium.toFixed(2)}g of sea salt</p>
                     <p>{+ingredients.bcaa.toFixed(2)}g of amino acids</p>
 
                     <h1>Nutrition Facts</h1>
